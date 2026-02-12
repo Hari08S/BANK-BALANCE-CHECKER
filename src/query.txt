@@ -1,0 +1,35 @@
+
+ACCOUNT_TBL:
+
+create table ACCOUNT_TBL (
+Account_Number varchar2(10) primary key,
+Customer_Name varchar2(15),
+Balance Number(10,2)
+);
+
+
+insert into ACCOUNT_TBL (Account_Number,CustomerName,Balance) values ('101','Hari',10000.00);
+insert into ACCOUNT_TBL (Account_Number,CustomerName,Balance) values ('102','Rajnath',2000.00);
+insert into ACCOUNT_TBL (Account_Number,CustomerName,Balance) values ('103','Hershoan',5000.00);
+insert into ACCOUNT_TBL (Account_Number,CustomerName,Balance) values ('104','Naveen',15000.00);
+
+select * from ACCOUNT_TBL;
+
+
+TRANSFER_TBL:
+
+create table TRANSFER_TBL (
+Transaction_ID Number(4) primary key,
+Account_Number varchar2(10) Reference ACCOUNT_TBL(Account_Number) foreign key,
+Benificiary_account_number varchar2(10)  Reference ACCOUNT_TBL(Benificiary_account_number) foreign key
+);
+
+insert into TRANSFER_TBL (Transaction_ID,Account_Number,Benificiary_account_number) values (
+(201,'101','101'),
+(202,'102','102'),
+(203,'103','103'),
+(204,'104','104'));
+
+alter table TRANSFER_TBL add (Transaction_Date Date,Transaction_Amount Number(10,2));
+
+select * from TRANSFER_TBL;
